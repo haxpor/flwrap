@@ -1,4 +1,5 @@
 var spawn = require('child_process').spawn;
+var spawnSync = require('child_process').spawnSync;
 var promise=require("bluebird");
 
 module.exports = function() {
@@ -46,10 +47,16 @@ module.exports = function() {
 	 * Execute a program with options to receive its callback.
 	 * @param  {String} programName   program name to execute
 	 * @param  {[type]} arrayOfParams array of parameters
+	 * @param {Object} options (**optional**) options as object  
+	 * It can include {  
+	 * `cwd`: *String* = current working directory for the child process  
+	 * }
 	 * @return {Object}               Promise object
 	 */
-	_.execute = function(programName, arrayOfParams) {
-		const cmd = spawn(programName, arrayOfParams);
+	_.execute = function(programName, arrayOfParams, options) {
+		const cmd = spawn(programName, arrayOfParams, {
+			cwd: options != null ? options.cwd : null
+		});
 
 		return new promise((resolve, reject) => {
 			cmd.stdout.on('data', (data) => {
@@ -66,6 +73,31 @@ module.exports = function() {
 		});
 	}
 
+	/**
+	 * Execute a program with options to receive its callback.
+	 * It will block the current thread until it has done its work.
+	 * 
+	 * @param  {String} programName   program name to execute
+	 * @param  {[type]} arrayOfParams array of parameters
+	 * @param {Object} options (**optional**) options as object  
+	 * It can include {  
+	 * `cwd`: *String* = current working directory for the child process  
+	 * }
+	 * @return {Object}               Object.stdout, Object.stderr, Object.status
+	 */
+	_.executeSync = function(programName, arrayOfParams, options) {
+		const retObj = spawnSync(programName, arrayOfParams, {
+			cwd: options != null ? options.cwd : null
+		});
+		var obj = {};
+		obj.status = retObj.status;
+		obj.stdout = retObj.stdout ? arrayBufferToString(retObj.stdout).replace(/^\s+|\s+$/g,"") : null;
+		obj.stderr = retObj.error ? retObj.error.message : (retObj.stderr ? arrayBufferToString(retObj.stderr).replace(/^\s+|\s+$/g,"") : null);
+
+		return obj;
+	}	
+
+	// *this doesn't support UTF-8
 	function arrayBufferToString(buffer){
 		if (buffer == null) {
 			return null;
@@ -73,9 +105,7 @@ module.exports = function() {
 
     var arr = new Uint8Array(buffer);
     var str = String.fromCharCode.apply(String, arr);
-    if(/[\u0080-\uffff]/.test(str)){
-        throw new Error("this string seems to contain (still encoded) multibytes");
-    }
+
     return str;
 	}
 

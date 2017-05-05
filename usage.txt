@@ -7,7 +7,7 @@ Required Parameters:
 
 Optional Parameters:
 
-    --fastlane-lane,  -fl   Lane to execute.
+    --fastlane-lane,  -f   Lane to execute.
                             
                             Default:
                             Use 'beta' for lane to execute.

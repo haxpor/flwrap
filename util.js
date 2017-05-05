@@ -1,4 +1,5 @@
 var spawn = require('child_process').spawn;
+var spawnSync = require('child_process').spawnSync;
 var promise=require("bluebird");
 
 module.exports = function() {
@@ -65,6 +66,24 @@ module.exports = function() {
 			});
 		});
 	}
+
+	/**
+	 * Execute a program with options to receive its callback.
+	 * It will block the current thread until it has done its work.
+	 * 
+	 * @param  {String} programName   program name to execute
+	 * @param  {[type]} arrayOfParams array of parameters
+	 * @return {Object}               Object.stdout, Object.stderr, Object.status
+	 */
+	_.executeSync = function(programName, arrayOfParams) {
+		const retObj = spawnSync(programName, arrayOfParams);
+		var obj = {};
+		obj.status = retObj.status;
+		obj.stdout = retObj.stdout ? arrayBufferToString(retObj.stdout).replace(/^\s+|\s+$/g,"") : null;
+		obj.stderr = retObj.error ? retObj.error.message : (retObj.stderr ? arrayBufferToString(retObj.stderr).replace(/^\s+|\s+$/g,"") : null);
+
+		return obj;
+	}	
 
 	function arrayBufferToString(buffer){
 		if (buffer == null) {

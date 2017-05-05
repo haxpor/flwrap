@@ -6,7 +6,6 @@ var util = require('./util');
 var spawn = require('child_process').spawn;
 var argv = subarg(process.argv.slice(2));
 
-var xcode_path = null;
 var fastlane_lane = 'beta';
 
 if ((argv.h || argv.help)) {
@@ -20,25 +19,6 @@ else if ((argv.p || argv['project-dir']) &&
 		.then((available) => {
 			util.dlog('fastlane is installed');
 
-			// get xcode-select path from user's passed parameter (if any)
-			if ((argv.x || argv['xcode-path']) &&
-					((typeof argv.x == "string" && argv.x != null) ||
-					 (typeof argv['xcode-path'] == "string" && argv['xcode-path'] != null))) {
-				xcode_path = argv.x ? argv.x : argv['xcode-path'];
-			}
-			// otherwise, get value from executing `xcode-select`
-			else {
-				let retObjChk = util.executeSync('xcode-select', ['-p']);
-
-				if (retObjChk.status != 0) {
-					console.log("Error from 'xcode-select -p' with '" + retObjChk.stderr + "'");
-					process.exit(-1);
-				}
-				else {
-					xcode_path = retObjChk.stdout;
-				}
-			}
-
 			// get fastlane's lane from user (if passed in)
 			if ((argv.f || argv['fastlane-lane']) &&
 					((typeof argv.f == "string" && argv.f != null) ||
@@ -46,8 +26,31 @@ else if ((argv.p || argv['project-dir']) &&
 				fastlane_lane = argv.f ? argv.f : argv['fastlane-lane'];
 			}
 
-			util.dlog('-> xcode_path: \'' + xcode_path + '\'');
 			util.dlog('-> fastlane_lane: \'' + fastlane_lane + '\'');
+
+			// find 'fastlane' directory from project folder
+			// execute at the current directory
+			// - give the benefit for project-dir to be passed in relative to the current directory
+			util.dlog(process.cwd() + " | " + (argv.p ? argv.p : argv['project-dir']));
+			let retObjChk = util.executeSync('find', [argv.p ? argv.p : argv['project-dir'], '-type', 'd', '-name', 'fastlane'], { cwd: process.cwd() });
+			let wdFastlane = null;
+
+			if (retObjChk.status != 0) {
+				console.log("Error from 'find' commnd to find working parent directory of 'fastlane' in project directory");
+				process.exit(-1);
+			}
+			else {
+				wdFastlane = retObjChk.stdout.substring(0, retObjChk.stdout.length-9);
+				util.dlog("directory to cd to is " + wdFastlane);
+			}
+
+			// execute fastlane
+			util.execute('fastlane', [fastlane_lane], { cwd: wdFastlane })
+				.then((data) => {
+					console.log(data);
+				}, (e) => {
+					console.log(e);
+				});
 
 		}, (e) => {
 			util.dlog('fastlane is not installed yet');

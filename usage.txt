@@ -1,0 +1,20 @@
+Usage: iappauto -p <project-directory> {OPTIONS}
+
+Required Parameters:
+
+      --project-dir,  -p    Project directory to execute Fastlane's lane command on.
+                            If you specify only this parameter then it will try to build 
+
+Optional Parameters:
+
+    --fastlane-lane,  -fl   Lane to execute.
+                            
+                            Default:
+                            Use 'beta' for lane to execute.
+
+        --xcode-path, -x    Xcode's path for execution of tools.
+
+                            Default:
+                            It will use path value from result of `xcode-select -p`.
+
+              --help, -h    Show usage which is this message.

@@ -1,0 +1,42 @@
+{
+  "name": "iappauto",
+  "version": "0.1.0",
+  "description": "Fastlane wrapper for automatic iOS builder and distributor. ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "iappauto": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haxpor/iappauto.git"
+  },
+  "keywords": [
+    "js",
+    "javascript",
+    "ios",
+    "fastlane",
+    "build",
+    "builder",
+    "distribute",
+    "distributor",
+    "auto",
+    "automatic"
+  ],
+  "author": {
+    "name": "Wasin Thonkaew",
+    "email": "haxpor@gmail.com",
+    "url": "https://wasin.io"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/haxpor/iappauto/issues"
+  },
+  "homepage": "https://github.com/haxpor/iappauto#readme",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "subarg": "^1.0.0"
+  }
+}

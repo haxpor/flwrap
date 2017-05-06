@@ -6,6 +6,7 @@
 ###################### Automatically generated ######################
 # Feel free to remove the following line if you use fastlane (which you should)
 
+# TODO: Change app_identifier, and username to match your information
 app_identifier "com.yourdomain.app" # The bundle identifier of your app
 username "yourid@yourdomain.com" # your Apple ID user
 submission_information({

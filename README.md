@@ -17,13 +17,16 @@ Execute `flwrap -h` to see usage instructions with all possible parameters to us
 
 # Workflow
 
-* Developer created an Xcode project
-* Integrate such project with Fastlane (thus with custom Fastfile)
-	* Normally you did it with `fastlane` command. Consult [fastlane doc](https://docs.fastlane.tools/) for how to integrate with your Xcode project.
-	* You can also take a look at example fastlane configuration files at [example/](https://github.com/haxpor/flwrap/tree/master/example). Notice line with `# TODO: ...` as you specify your values in there.
-	* Make sure to set `ENV["DEVELOPER_DIR"] = '/Volumes/Main/Applications/Xcode8.3/Xcode.app/Contents/Developer'` in which it points to a desire Xcode version you want to build with this project. Otherwise, it will use default one automatically as can be retrieved by `xcode-select`.
-* Execute command to build project `flwrap --project-dir /Users/your-project-dir --fastlane-lane beta`
-* Better yet you can use above command to hook it up with your `cron` job to make it build periodically especially to extend testing period, or up to your CI setup.
+1. Developer created an Xcode project
+2. If you use `cocoapod` then you should be creating `Podfile` and already executed `pod install` at this point.
+    As this will allow it to create workspace project file for you.
+3. Integrate project with Fastlane (thus with custom Fastfile)
+	* Normally you did it with `fastlane init` and it's just enough. Answer interactive questions that might ask during executing of such command. You can also consult [fastlane doc](https://docs.fastlane.tools/) for how to integrate with your Xcode project.
+	* Modify fastlane configuration files especially `Fastfile`.
+        * See [example/](https://github.com/haxpor/flwrap/tree/master/example). Notice line with `# TODO: ...` as you specify your values in there.
+	    * Make sure to set `ENV["DEVELOPER_DIR"] = '/Volumes/Main/Applications/Xcode8.3/Xcode.app/Contents/Developer'` in which it points to a desire Xcode version you want to build with this project. Otherwise, it will use default one automatically as can be retrieved by `xcode-select`.
+4. Execute command to build project `flwrap --project-dir /Users/your-project-dir --fastlane-lane beta`
+5. Better yet you can use above command to hook it up with your `cron` job to make it build periodically especially to extend testing period, or up to your CI setup.
 
 # Recommend Project Setting
 

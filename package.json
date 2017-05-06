@@ -1,6 +1,6 @@
 {
   "name": "flwrap",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Fastlane wrapper for automatic iOS builder and distributor. ",
   "main": "index.js",
   "scripts": {

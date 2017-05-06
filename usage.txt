@@ -1,15 +1,26 @@
-Usage: iappauto -p <project-directory> {OPTIONS}
+Usage: flwrap -p <project-directory> {OPTIONS}
 
-Required Parameters:
+Parameters:
 
-      --project-dir,  -p    Project directory to execute Fastlane's lane command on.
-                            If you specify only this parameter then it will try to build 
+                    --project-dir,  -p      Project directory to execute Fastlane's lane command on.
+                                            If you specify this parameter without value, then program exits immediately.
 
-Optional Parameters:
-
-    --fastlane-lane,  -f   Lane to execute.
+                  --fastlane-lane,  -f      Lane to execute.
                             
-                            Default:
-                            Use 'beta' for lane to execute.
+                                            Default:
+                                            Use 'beta' for lane to execute.
 
-              --help, -h    Show usage which is this message.
+  --write-default-fastlane-config,  -w      Write a default Fastlane's configuration for the type according to value specified.
+                                            It will write into file with default name the same as used by Fastlane.
+                                            The content of configuration will be default in which you will be configuring it later.
+
+                                            Default:
+                                            Value is 'Fastfile' (case insensitive).
+                                            Possible values can be 'Fastfile', 'Deliverfile', 'Appfile', 'changelog'.
+
+         --force-overwrite-config,  -f      Use with -w to force overwrite file if there's any existing file.
+
+                                            Default:
+                                            If detected that there's an existing file, it will exit immediately.
+
+                           --help,  -h      Show usage which is this message.

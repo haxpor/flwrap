@@ -1,6 +1,7 @@
 app_identifier "com.yourdomain.app" # The bundle identifier of your app
 apple_id "yourid@yourdomain.com" # Your Apple email address
 
+# TODO: Change it to your team ID
 team_id "XXXXXXXXXX"  # Developer Portal Team ID
 
 # you can even provide different app identifiers, Apple IDs and team names per lane:

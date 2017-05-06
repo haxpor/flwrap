@@ -1,5 +1,5 @@
 {
-  "name": "iappauto",
+  "name": "flwrap",
   "version": "0.1.0",
   "description": "Fastlane wrapper for automatic iOS builder and distributor. ",
   "main": "index.js",

@@ -30,6 +30,9 @@ Execute `flwrap -h` to see usage instructions with all possible parameters to us
 Here is recommended advice to properly configure your Xcode project, and project repository in general to work with automated Fastlane's configuration file (Fastfile).
 
 * Enable argvtool by setting `Current Project Version` to `1` for new project, and change `Versioning System` to `Apple Generic` under Xcode's `Build Settings`. This will make sure that `commit_version_bump` in Fastlane will work properly. See more information [here](https://developer.apple.com/library/content/qa/qa1827/_index.html).
+	
+	> You might have to execute `argvtool new-version -all <version>` in case you have exsiting Xcode project that is uploaded to Testflight or App Store already and now you need to automate building process. `<version>` is the current build number you have on Testflight or App Store. This command ensure that your project will have only an only single version number, and will work properly when build with Fastlane.
+
 * Include the following lines in `.gitignore` to exclude build artifacts from building process
 
     ```
@@ -38,7 +41,6 @@ Here is recommended advice to properly configure your Xcode project, and project
     report.xml
     ```
 * Set `App Uses Non-Exempt Encryption` as a new key to project's `Info.plist` file with value of type `Boolean` as `NO`. This is to avoid manual confirmation as you need to log in on iTunes connect website then click to resolve such issue. Doing this will safely avoid that and makes it automated.
-> You might have to execute `argvtool new-version -all <version>` in case you have exsiting Xcode project that is uploaded to Testflight or App Store already and now you need to automate building process. `<version>` is the current build number you have on Testflight or App Store. This command ensure that your project will have only an only single version number, and will work properly when build with Fastlane.
 
 # License
 This project is based on [MIT](https://github.com/haxpor/flwrap/blob/master/LICENSE) license.

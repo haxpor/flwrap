@@ -1,6 +1,6 @@
 {
   "name": "flwrap",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Fastlane wrapper for automatic iOS builder and distributor. ",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/haxpor/iappauto.git"
+    "url": "git+https://github.com/haxpor/flwrap.git"
   },
   "keywords": [
     "js",
@@ -32,9 +32,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/haxpor/iappauto/issues"
+    "url": "https://github.com/haxpor/flwrap/issues"
   },
-  "homepage": "https://github.com/haxpor/iappauto#readme",
+  "homepage": "https://github.com/haxpor/flwrap#readme",
   "dependencies": {
     "bluebird": "^3.5.0",
     "subarg": "^1.0.0"

@@ -75,7 +75,7 @@ platform :ios do
         message: 'Build Version Bump by Fastlane',
 
         # TODO: Uncomment and specify your .xcodeproj file to build in case you have multiple of .xcodeproj files inside your project directory
-        # xcodeproj: './InviteAndRedeem.xcodeproj'
+        # xcodeproj: './yourproject.xcodeproj'
     )
 
     # get build number then tag it on git
@@ -105,7 +105,7 @@ platform :ios do
         message: 'Version bump by fastlane',
 
         # TODO: Uncomment and specify your .xcodeproj file to build in case you have multiple of .xcodeproj files inside your project directory
-        # xcodeproj: './InviteAndRedeem.xcodeproj'
+        # xcodeproj: './yourproject.xcodeproj'
     )
 
     # get build number then tag it on git

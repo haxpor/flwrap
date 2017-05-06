@@ -1,7 +1,7 @@
 # flwrap
 flwrap is thin layer wrapping around [Fastlane](https://github.com/fastlane/fastlane) to make execution on command easier.
 
-This project is based off from Fastlane version `2.22.0.`
+This project is based off from Fastlane version `2.28.9.`
 
 # Overview
 

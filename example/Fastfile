@@ -32,6 +32,8 @@ end
 
 platform :ios do
 
+  # TODO: Create and edit your 'changelog' file (at the same level of Fastlane) to include it as changelog message in
+  #       submission as beta on Testflight
   changelog = readFileButIgnoreComment("changelog")
 
   before_all do
@@ -73,7 +75,7 @@ platform :ios do
         message: 'Build Version Bump by Fastlane',
 
         # TODO: Uncomment and specify your .xcodeproj file to build in case you have multiple of .xcodeproj files inside your project directory
-        # xcodeproj: './InviteAndRedeem/InviteAndRedeem.xcodeproj'
+        # xcodeproj: './InviteAndRedeem.xcodeproj'
     )
 
     # get build number then tag it on git
@@ -103,7 +105,7 @@ platform :ios do
         message: 'Version bump by fastlane',
 
         # TODO: Uncomment and specify your .xcodeproj file to build in case you have multiple of .xcodeproj files inside your project directory
-        # xcodeproj: './InviteAndRedeem/InviteAndRedeem.xcodeproj'
+        # xcodeproj: './InviteAndRedeem.xcodeproj'
     )
 
     # get build number then tag it on git

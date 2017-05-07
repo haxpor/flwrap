@@ -28,7 +28,7 @@ Execute `flwrap -h` to see usage instructions with all possible parameters to us
 4. Execute command to build project `flwrap --project-dir /Users/your-project-dir --fastlane-lane beta`
 5. Better yet you can use above command to hook it up with your `cron` job to make it build periodically especially to extend testing period, or up to your CI setup.
 
-# Recommend Project Setting
+# Recommended Project Setting
 
 Here is recommended advice to properly configure your Xcode project, and project repository in general to work with automated Fastlane's configuration file (Fastfile).
 
